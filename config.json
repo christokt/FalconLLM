@@ -5,6 +5,10 @@
     "RWForCausalLM"
   ],
   "attention_dropout": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_RW.RWConfig",
+    "AutoModelForCausalLM": "modelling_RW.RWForCausalLM"
+  },
   "bias": false,
   "bos_token_id": 1,
   "eos_token_id": 2,
@@ -12,7 +16,7 @@
   "hidden_size": 4544,
   "initializer_range": 0.02,
   "layer_norm_epsilon": 1e-05,
-  "model_type": "RefinedWeb",
+  "model_type": "RefinedWebModel",
   "multi_query": true,
   "n_head": 71,
   "n_layer": 32,
