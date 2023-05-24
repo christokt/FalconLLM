@@ -21,7 +21,7 @@ from transformers.modeling_outputs import (
 )
 from transformers.modeling_utils import PreTrainedModel
 from transformers.utils import logging
-from configuration_RW import RWConfig
+from .configuration_RW import RWConfig
 
 logger = logging.get_logger(__name__)
 
@@ -303,7 +303,7 @@ class Attention(nn.Module):
                 attention_scores = attention_scores.to(torch.float32)
             # attn_weights = torch.masked_fill(attention_scores, attention_mask, torch.finfo(attention_scores.dtype).min)
             attention_probs = F.softmax(
-                (attention_scores + alibi) * self.inv_norm_factor + attention_mask_float,
+                (attention_scores + alibi.view(batch_size, self.num_heads, 1, -1)) * self.inv_norm_factor + attention_mask_float,
                 dim=-1,
                 dtype=hidden_states.dtype,
             )
