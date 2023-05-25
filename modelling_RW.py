@@ -89,7 +89,7 @@ class RotaryEmbedding(torch.nn.Module):
 
     def forward(self, q, k):
         batch, seq_len, head_dim = q.shape
-        cos, sin = self.cos_sin(seq_len)
+        cos, sin = self.cos_sin(seq_len, q.device)
         return (q * cos) + (rotate_half(q) * sin), (k * cos) + (rotate_half(k) * sin)
 
 
